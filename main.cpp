@@ -1,14 +1,18 @@
 #include <iostream>
 #include <unistd.h>
+#include <string>
+#include <chrono>
 using std::cin;
 using std::cout;
 using std::string;
+using std::chrono::duration;
+using std::chrono::duration_cast;
+using std::chrono::high_resolution_clock;
 
 const string ESC = "\033[";
 const string CLEAR_SCREEN = ESC + "2J" + ESC + "H";
 const string RESET_FORMATTING = ESC + "0m";
 const string TEXT_BOLD = ESC + "1m";
-const string TEXT_BLINK = ESC + "5m";
 const string TEXT_COLOR_GREEN = ESC + "32m";
 const string TEXT_COLOR_CYAN = ESC + "36m";
 
@@ -16,8 +20,8 @@ string words[] = {"AES", "API", "AR", "AWS", "Actuator", "Actuators", "Aerodynam
 
 void displayWord(const string &word, int index)
 {
-    cout << ' ' + TEXT_BOLD + TEXT_BLINK << word << ' ' + RESET_FORMATTING;
-    cout << TEXT_BOLD + TEXT_COLOR_CYAN << index << RESET_FORMATTING + '\n';
+    cout << ' ' + TEXT_BOLD << word << ' ' + RESET_FORMATTING;
+    cout << TEXT_BOLD + TEXT_COLOR_CYAN << index << RESET_FORMATTING << '\n';
     cout << ' ' + TEXT_BOLD + TEXT_COLOR_CYAN + TEXT_COLOR_GREEN;
     for (int i = 0; i < word.length(); i++)
         cout << "─";
@@ -36,6 +40,11 @@ int main()
         }
 
         int typo = 0;
+        int totalWordsTyped = 0;
+        int totalCharactersTyped = 0;
+
+        high_resolution_clock::time_point startTime = high_resolution_clock::now();
+
         cout << CLEAR_SCREEN;
 
         for (int i = size(words) - 1; i >= 0; i--)
@@ -52,15 +61,25 @@ int main()
                 cout << CLEAR_SCREEN + RESET_FORMATTING;
 
                 if (input == word)
+                {
+                    totalWordsTyped++;
+                    totalCharactersTyped += word.length();
                     break;
+                }
                 if (!input.empty())
                     typo++;
             }
         }
 
+        high_resolution_clock::time_point endTime = high_resolution_clock::now();
+        duration<double> elapsedTime = duration_cast<duration<double>>(endTime - startTime);
+
         cout << CLEAR_SCREEN + RESET_FORMATTING;
         cout << "Typo: " << typo << '\n';
+        cout << "CPM: " << (totalCharactersTyped / elapsedTime.count()) * 60 << '\n';
+        cout << "WPM: " << (totalWordsTyped / elapsedTime.count()) * 60 << '\n';
         sleep(5);
     }
+
     return 0;
 }
