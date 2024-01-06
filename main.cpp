@@ -91,9 +91,11 @@ int main()
 
     cout << CLEAR_SCREEN + RESET_FORMATTING;
     cout << "Typo Count: " << typoCount << '\n';
+    cout << "Typo Rate: " << static_cast<double>(typoCount) / totalWordsTyped * 100 << "%\n";
+    cout << "Total Characters Typed: " << totalCharactersTyped << '\n';
+    cout << "Time Elapsed: " << elapsedTimeSeconds.count() << " seconds\n";
     cout << "Characters Per Minute (CPM): " << (totalCharactersTyped / elapsedTimeSeconds.count()) * 60 << '\n';
     cout << "Words Per Minute (WPM): " << (totalWordsTyped / elapsedTimeSeconds.count()) * 60 << '\n';
-    cout << "Time Elapsed: " << elapsedTimeSeconds.count() << " seconds\n";
 
     return 0;
 }
