@@ -4,6 +4,7 @@
 #include <chrono>
 using std::cin;
 using std::cout;
+using std::stoi;
 using std::string;
 using std::chrono::duration;
 using std::chrono::duration_cast;
@@ -38,8 +39,24 @@ void pauseAndDisplayWord(const string &word, int index, duration<int64_t, std::n
     elapsedTime -= endTime - startTime;
 }
 
-int main()
+int main(int argc, char *argv[])
 {
+    int numberOfWords;
+    if (argc == 2)
+    {
+        numberOfWords = stoi(argv[1]);
+
+        if (numberOfWords <= 0 || numberOfWords > size(words))
+        {
+            cout << "Please enter a number between 1 and " << size(words) << ".\n";
+            return 1;
+        }
+    }
+    else
+    {
+        numberOfWords = size(words);
+    }
+
     cout << HIDE_CURSOR;
     for (int i = 3; i > 0; i--)
     {
@@ -57,7 +74,7 @@ int main()
 
     cout << CLEAR_SCREEN;
 
-    for (int i = size(words) - 1; i >= 0; i--)
+    for (int i = numberOfWords - 1; i >= 0; i--)
     {
         string currentWord = words[i];
 
