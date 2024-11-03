@@ -1,24 +1,136 @@
-# C++ 코드 실행 방법
+# ⌨️ Typing Practice
 
-이 코드는 C++ 언어로 작성된 콘솔 애플리케이션입니다. 코드를 실행하기 위해서는 다음 단계를 따르세요.
+<div align="center">
 
-1. C++ 컴파일러를 설치하세요. 대표적인 C++ 컴파일러로는 gcc 이 있습니다.
-2. 텍스트 에디터를 열고 `main.cpp` 파일을 생성하세요.
-3. 코드를 복사하여 `main.cpp` 파일에 붙여넣으세요.
-4. 컴파일러를 사용하여 코드를 컴파일하세요. 예를 들어, gcc를 사용하여 컴파일하려면 터미널에서 다음 명령어를 실행하세요.
+[![Stars](https://img.shields.io/github/stars/in-jun/Typing-practice.svg)](https://github.com/in-jun/Typing-practice/stargazers)
+[![C++](https://img.shields.io/badge/language-C++-00599C.svg)](https://isocpp.org/)
+
+> 🚀 프로그래밍 키워드로 타자 실력과 코드 친숙도를 동시에 향상시키는 개발자 특화 연습 도구
+
+</div>
+
+---
+
+## 📋 목차
+
+-   [기능 개요](#-기능-개요)
+-   [시스템 요구사항](#-시스템-요구사항)
+-   [프로그램 구조](#-프로그램-구조)
+-   [사용자 인터페이스](#-사용자-인터페이스)
+-   [연습 단어 목록](#-연습-단어-목록)
+
+---
+
+## ✨ 기능 개요
+
+### 핵심 기능
+
+-   🎯 **실시간 측정**
+
+    -   WPM (Words Per Minute)
+    -   CPM (Characters Per Minute)
+    -   정확도 백분율
+    -   경과 시간 표시
+
+-   📊 **시각적 피드백**
+
+    -   컬러 코딩된 진행 상태
+    -   그래디언트 텍스트 효과
+    -   오류 하이라이팅
+    -   진행률 바
+
+-   🎨 **고급 UI 요소**
+    -   단어 미리보기
+    -   스타일링된 출력
+
+## 💻 시스템 요구사항
+
+### 필수 요구사항
+
+```yaml
+컴파일러:
+    - GCC 5.0+
+    - ANSI 컬러 지원 터미널
+
+운영체제:
+    - Linux
+    - macOS
+    - Windows (ANSI 지원 터미널)
+
+라이브러리:
+    - STL (C++11 이상)
+```
+
+## 🔧 프로그램 구조
+
+### 주요 클래스
+
+```mermaid
+classDiagram
+    class Style {
+        +static ESC: string
+        +static gradient()
+        +static various color constants
+    }
+    class UI {
+        +static printTopBar()
+        +static printStats()
+        +static printWordArea()
+    }
+    class TypingPractice {
+        -words: vector<string>
+        -wordCount: int
+        +start()
+        -updateDisplay()
+    }
+```
+
+### 스타일 시스템
+
+| 스타일 종류 | 용도        | 예시        |
+| ----------- | ----------- | ----------- |
+| PRIMARY     | 주요 텍스트 | 현재 단어   |
+| SECONDARY   | 보조 텍스트 | 미리보기    |
+| SUCCESS     | 성공 표시   | 정확도      |
+| ERROR       | 오류 표시   | 잘못된 입력 |
+| WARNING     | 경고 표시   | 타이머      |
+
+## 🎮 사용자 인터페이스
+
+### 화면 구성
 
 ```
-g++ -o main main.cpp
+TYPING PRACTICE
+
+     0 WPM     0 CPM  100%  00:00  ──────────────────── (0%)
+
+  drop  query  where  some
+
+❯
 ```
 
-5. 컴파일이 완료되면, 실행 파일을 실행하세요. 예를 들어, 터미널에서 다음 명령어를 실행하여 실행 파일을 실행할 수 있습니다.
+### 통계 표시
 
-```
-./main
-```
+-   WPM: 분당 단어 수
+-   CPM: 분당 문자 수
+-   정확도: 올바른 입력 비율
+-   진행률: 시각적 진행 바
 
-6. 코드가 실행되면, 타이핑 게임이 시작됩니다. 단어를 올바르게 입력하면 다음 단어가 나타나고, 타이핑 오류가 있으면 `typo` 수가 증가합니다.
+### 단어 선택 기준
 
-# 코드 목적
+-   실제 코딩에서 빈번히 사용되는
+-   다양한 프로그래밍 언어 포함
+-   난이도 균형 고려
+-   실용성 중심
 
-이 코드는 타이핑 게임을 구현한 예제입니다. 코드는 `words` 배열에 저장된 단어들을 사용하여 게임을 시작합니다. 각 단어를 정확하게 타이핑하는 것이 목적입니다. 게임은 무한 반복되며, 타이핑 오류가 발생할 때마다 `typo` 수가 증가합니다.
+---
+
+<div align="center">
+
+**[맨 위로 올라가기](#-typing-practice)**
+
+⭐ **이 프로젝트가 도움이 되었다면 GitHub Star를 눌러주세요** ⭐
+
+Made with ❤️ by [in-jun](https://github.com/in-jun)
+
+</div>
